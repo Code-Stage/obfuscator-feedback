@@ -1,0 +1,83 @@
+name: Bug report
+description: Report something broken or misbehaving in Obfuscator
+title: "[Bug]: "
+labels: ["type: bug", "source: customer", "status: triaging"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting this. The more concrete you can be about versions, platform, and exact steps, the faster I can reproduce and fix it. You can follow this issue for updates.
+  - type: input
+    id: asset_version
+    attributes:
+      label: Obfuscator version
+      placeholder: e.g. 2.9.2
+    validations:
+      required: true
+  - type: input
+    id: unity_version
+    attributes:
+      label: Unity version
+      placeholder: e.g. 6000.0.28f1
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform(s) where it happens
+      multiple: true
+      options:
+        - Unity Editor
+        - Windows
+        - macOS
+        - Linux
+        - Android
+        - iOS
+        - WebGL
+        - Console
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: What happened
+      description: What went wrong, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: A numbered list that reliably triggers it.
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: How often does it happen?
+      options:
+        - Every time
+        - Sometimes
+        - Happened once
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console errors / logs
+      description: Paste any related errors or stack traces. GitHub formats them automatically.
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before you submit
+      options:
+        - label: I searched existing issues and this isn't a duplicate
+          required: true
+        - label: I'm on the latest version of Obfuscator I can run
+          required: false
