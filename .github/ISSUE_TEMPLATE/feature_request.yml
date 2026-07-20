@@ -1,0 +1,38 @@
+name: Feature request
+description: Suggest a capability or improvement for Obfuscator
+title: "[Feature]: "
+labels: ["type: feature", "source: customer", "status: triaging"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The best feature ideas start from a real problem. Tell me what you're trying to do and where the current version gets in your way. That helps more than a ready-made solution.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: The problem or use case behind the request.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would help
+      description: How you imagine it working. Rough is fine.
+    validations:
+      required: false
+  - type: dropdown
+    id: importance
+    attributes:
+      label: How much does this matter to you?
+      options:
+        - Nice to have
+        - Would make a real difference
+        - Blocking my project
+    validations:
+      required: true
+  - type: input
+    id: asset_version
+    attributes:
+      label: Obfuscator version
+      placeholder: e.g. 2.9.2
