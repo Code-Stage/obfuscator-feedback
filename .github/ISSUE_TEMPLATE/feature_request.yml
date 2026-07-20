@@ -34,5 +34,5 @@ body:
   - type: input
     id: asset_version
     attributes:
-      label: Obfuscator version
+      label: "Obfuscator version"
       placeholder: e.g. 2.9.2
