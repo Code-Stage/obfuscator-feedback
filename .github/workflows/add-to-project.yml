@@ -1,0 +1,36 @@
+name: Add to project board
+
+# Adds every new issue to the Code Stage project board.
+# Requires an org-level Actions secret ADD_TO_PROJECT_PAT (fine-grained PAT with
+# organization "Projects: Read and write" + repository "Issues: Read").
+# Until that secret exists this workflow runs green and simply skips.
+
+on:
+  issues:
+    types: [opened, reopened, transferred]
+
+permissions:
+  contents: read
+
+jobs:
+  add-to-project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check that the project token is configured
+        id: check
+        env:
+          PAT: ${{ secrets.ADD_TO_PROJECT_PAT }}
+        run: |
+          if [ -n "$PAT" ]; then
+            echo "have=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "have=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::ADD_TO_PROJECT_PAT is not set yet - skipping. Add the org secret to enable."
+          fi
+
+      - name: Add issue to project
+        if: steps.check.outputs.have == 'true'
+        uses: actions/add-to-project@v1.0.2
+        with:
+          project-url: https://github.com/orgs/Code-Stage/projects/4
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
